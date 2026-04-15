@@ -1,8 +1,7 @@
-from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from .resources import Resource
-from .sandwiches import Sandwich
+from .menu_items import MenuItem
 
 
 class RecipeBase(BaseModel):
@@ -10,18 +9,22 @@ class RecipeBase(BaseModel):
 
 
 class RecipeCreate(RecipeBase):
-    sandwich_id: int
+    menu_item_id: int
     resource_id: int
 
+
 class RecipeUpdate(BaseModel):
-    sandwich_id: Optional[int] = None
+    menu_item_id: Optional[int] = None
     resource_id: Optional[int] = None
     amount: Optional[int] = None
 
+
 class Recipe(RecipeBase):
     id: int
-    sandwich: Sandwich = None
-    resource: Resource = None
+    menu_item_id: int
+    resource_id: int
+    menu_item: Optional[MenuItem] = None
+    resource: Optional[Resource] = None
 
     class ConfigDict:
         from_attributes = True

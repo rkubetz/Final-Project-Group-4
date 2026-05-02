@@ -15,3 +15,4 @@ class MenuItem(Base):
 
     order_details = relationship("OrderDetail", back_populates="menu_item")
     recipes = relationship("Recipe", back_populates="menu_item")
+    reviews = relationship("Review", back_populates="menu_item")

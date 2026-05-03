@@ -11,7 +11,7 @@ class OrderBase(BaseModel):
     order_type: str = "takeout"  # "takeout" or "delivery"
     total_price: float
     order_status: str
-    order_date: datetime
+    order_date: Optional[datetime] = None
     promo_code: Optional[str] = None
 
 

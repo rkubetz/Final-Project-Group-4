@@ -20,6 +20,12 @@ def read_all(db: Session = Depends(get_db)):
     return controller.read_all(db)
 
 
+@router.get("/search", response_model=list[schema.MenuItem])
+def search_by_category(category: str, db: Session = Depends(get_db)):
+    """Customer: Search available menu items by food category (e.g. vegetarian, spicy, kids, low fat)."""
+    return controller.search_by_category(db, category)
+
+
 @router.get("/{item_id}", response_model=schema.MenuItem)
 def read_one(item_id: int, db: Session = Depends(get_db)):
     return controller.read_one(db, item_id)
